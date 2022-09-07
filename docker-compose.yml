@@ -8,8 +8,8 @@ services:
   ## shared/managed services
 
   mysql:
-    logging:
-      driver: none
+    # logging:
+    #   driver: none
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=lol123
