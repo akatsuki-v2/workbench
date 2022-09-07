@@ -80,6 +80,7 @@ services:
       - LOG_LEVEL=20
     volumes:
       - ./repos/user-gateway-service/mount:/srv/root
+      - ./repos/user-gateway-service/scripts:/scripts
 
   user-accounts-service:
     image: user-accounts-service:latest
@@ -113,6 +114,7 @@ services:
       - AMQP_PASS=guest
     volumes:
       - ./repos/user-accounts-service/mount:/srv/root
+      - ./repos/user-accounts-service/scripts:/scripts
     depends_on:
       - mysql
       # - redis
