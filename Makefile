@@ -17,8 +17,8 @@ pull: # pull all containers
 run: # run all containers
 	@docker-compose up \
 		mysql \
-		rabbitmq \
-		redis \
-		elasticsearch \
 		user-gateway-service \
 		user-accounts-service
+		# rabbitmq \
+		# redis \
+		# elasticsearch \
