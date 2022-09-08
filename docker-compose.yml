@@ -1,8 +1,8 @@
 version: "3.3"
 
-networks:
-  default:
-    driver: bridge
+# networks:
+#   default:
+#     driver: bridge
 
 services:
   ## shared/managed services
