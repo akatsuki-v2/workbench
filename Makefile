@@ -14,7 +14,16 @@ pull: # pull all containers
 	cd $(REPO_DIR)/user-gateway-service && git pull
 	cd $(REPO_DIR)/user-accounts-service && git pull
 
-run: # run all containers
+run-bg: # run all containers in the background
+	@docker-compose up -d \
+		mysql \
+		user-gateway-service \
+		user-accounts-service
+		# rabbitmq \
+		# redis \
+		# elasticsearch \
+
+run: # run all containers in the foreground
 	@docker-compose up \
 		mysql \
 		user-gateway-service \
