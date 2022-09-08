@@ -94,16 +94,21 @@ services:
       - APP_PORT=20000
       - LOG_LEVEL=20
       # database
+      - READ_DB_DRIVER=mysql+asyncmy
       - READ_DB_USER=root
       - READ_DB_PASS=lol123
       - READ_DB_HOST=mysql
       - READ_DB_PORT=3306
       - READ_DB_NAME=akatsuki
+      - WRITE_DB_DRIVER=mysql+asyncmy
       - WRITE_DB_USER=root
       - WRITE_DB_PASS=lol123
       - WRITE_DB_HOST=mysql
       - WRITE_DB_PORT=3306
       - WRITE_DB_NAME=akatsuki
+      - MIN_DB_POOL_SIZE=5
+      - MAX_DB_POOL_SIZE=10
+      - DB_USE_SSL=false
       # redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
