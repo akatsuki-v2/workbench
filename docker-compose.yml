@@ -7,17 +7,26 @@ version: "3.3"
 services:
   ## shared/managed services
 
-  mysql:
-    # logging:
-    #   driver: none
-    image: mysql
+  postgres:
+    image: postgres:13
     environment:
-      - MYSQL_ROOT_PASSWORD=lol123
-    restart: always
+      POSTGRES_PASSWORD: lol123
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./pgdata:/var/lib/postgresql/data
     ports:
-      - 3306:3306
+      - "5432:5432"
+
+  # mysql:
+  #   # logging:
+  #   #   driver: none
+  #   image: mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=lol123
+  #   restart: always
+  #   volumes:
+  #     - ./mysql:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
 
   # redis:
   #   logging:
@@ -94,17 +103,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=20
       # database
-      - READ_DB_DRIVER=mysql+asyncmy
-      - READ_DB_USER=root
+      - READ_DB_DRIVER=postgresql
+      - READ_DB_USER=postgres
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=mysql
-      - READ_DB_PORT=3306
+      - READ_DB_HOST=postgres
+      - READ_DB_PORT=5432
       - READ_DB_NAME=akatsuki
-      - WRITE_DB_DRIVER=mysql+asyncmy
-      - WRITE_DB_USER=root
+      - WRITE_DB_DRIVER=postgresql
+      - WRITE_DB_USER=postgres
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=mysql
-      - WRITE_DB_PORT=3306
+      - WRITE_DB_HOST=postgres
+      - WRITE_DB_PORT=5432
       - WRITE_DB_NAME=akatsuki
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -121,8 +130,8 @@ services:
       - ./repos/user-accounts-service/mount:/srv/root
       - ./repos/user-accounts-service/scripts:/scripts
     depends_on:
-      - mysql
-      # - redis
+      - postgres
+      - redis
       # - rabbitmq
 
   beatmaps-service:
@@ -137,17 +146,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=20
       # database
-      - READ_DB_DRIVER=mysql+asyncmy
-      - READ_DB_USER=root
+      - READ_DB_DRIVER=postgresql
+      - READ_DB_USER=postgres
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=mysql
-      - READ_DB_PORT=3306
+      - READ_DB_HOST=postgres
+      - READ_DB_PORT=5432
       - READ_DB_NAME=akatsuki
-      - WRITE_DB_DRIVER=mysql+asyncmy
-      - WRITE_DB_USER=root
+      - WRITE_DB_DRIVER=postgresql
+      - WRITE_DB_USER=postgres
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=mysql
-      - WRITE_DB_PORT=3306
+      - WRITE_DB_HOST=postgres
+      - WRITE_DB_PORT=5432
       - WRITE_DB_NAME=akatsuki
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -164,7 +173,7 @@ services:
       - ./repos/beatmaps-service/mount:/srv/root
       - ./repos/beatmaps-service/scripts:/scripts
     depends_on:
-      - mysql
+      - postgres
       # - redis
       # - rabbitmq
 
@@ -180,17 +189,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=20
       # database
-      - READ_DB_DRIVER=mysql+asyncmy
-      - READ_DB_USER=root
+      - READ_DB_DRIVER=postgresql
+      - READ_DB_USER=postgres
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=mysql
-      - READ_DB_PORT=3306
+      - READ_DB_HOST=postgres
+      - READ_DB_PORT=5432
       - READ_DB_NAME=akatsuki
-      - WRITE_DB_DRIVER=mysql+asyncmy
-      - WRITE_DB_USER=root
+      - WRITE_DB_DRIVER=postgresql
+      - WRITE_DB_USER=postgres
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=mysql
-      - WRITE_DB_PORT=3306
+      - WRITE_DB_HOST=postgres
+      - WRITE_DB_PORT=5432
       - WRITE_DB_NAME=akatsuki
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -207,6 +216,6 @@ services:
       - ./repos/bancho-service/mount:/srv/root
       - ./repos/bancho-service/scripts:/scripts
     depends_on:
-      - mysql
+      - postgres
       # - redis
       # - rabbitmq
