@@ -22,7 +22,7 @@ pull: # pull all containers
 
 run-bg: # run all containers in the background
 	@docker-compose up -d \
-		mysql \
+		postgres \
 		user-gateway-service \
 		user-accounts-service \
 		beatmaps-service \
@@ -33,7 +33,7 @@ run-bg: # run all containers in the background
 
 run: # run all containers in the foreground
 	@docker-compose up \
-		mysql \
+		postgres \
 		user-gateway-service \
 		user-accounts-service \
 		beatmaps-service \
