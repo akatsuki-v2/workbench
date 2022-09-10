@@ -219,3 +219,46 @@ services:
   #     - postgres
   #     # - redis
   #     # - rabbitmq
+
+  clans-service:
+    image: clans-service:latest
+    ports:
+      - 14000:80
+    environment:
+      # asgi + app
+      - APP_ENV=local
+      - APP_COMPONENT=api
+      - APP_HOST=0.0.0.0
+      - APP_PORT=80
+      - LOG_LEVEL=20
+      # database
+      - READ_DB_DRIVER=postgresql
+      - READ_DB_USER=postgres
+      - READ_DB_PASS=lol123
+      - READ_DB_HOST=postgres
+      - READ_DB_PORT=5432
+      - READ_DB_NAME=clans_dev
+      - WRITE_DB_DRIVER=postgresql
+      - WRITE_DB_USER=postgres
+      - WRITE_DB_PASS=lol123
+      - WRITE_DB_HOST=postgres
+      - WRITE_DB_PORT=5432
+      - WRITE_DB_NAME=clans_dev
+      - MIN_DB_POOL_SIZE=5
+      - MAX_DB_POOL_SIZE=10
+      - DB_USE_SSL=false
+      # redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # rabbitmq
+      - AMQP_HOST=rabbitmq
+      - AMQP_PORT=5672
+      - AMQP_USER=guest
+      - AMQP_PASS=guest
+    volumes:
+      - ./repos/clans-service/mount:/srv/root
+      - ./repos/clans-service/scripts:/scripts
+    depends_on:
+      - postgres
+      # - redis
+      # - rabbitmq
