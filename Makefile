@@ -26,6 +26,7 @@ pull: # pull all containers
 run-bg: # run all containers in the background
 	@docker-compose up -d \
 		postgres \
+		nginx \
 		user-gateway-service \
 		user-accounts-service \
 		clans-service \
@@ -38,6 +39,7 @@ run-bg: # run all containers in the background
 run: # run all containers in the foreground
 	@docker-compose up \
 		postgres \
+		nginx \
 		user-gateway-service \
 		user-accounts-service \
 		clans-service \

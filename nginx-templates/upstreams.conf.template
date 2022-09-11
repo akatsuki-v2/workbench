@@ -1,0 +1,3 @@
+upstream user_gateway {
+    server user-gateway-service;
+}

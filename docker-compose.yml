@@ -74,6 +74,16 @@ services:
   #     - 5672:5672
   #     - 15672:15672
 
+  nginx:
+    image: nginx:1.19
+    volumes:
+    - ./nginx-templates:/etc/nginx/templates
+    ports:
+    - "80:80"
+    # environment:
+    # - NGINX_HOST=foobar.com
+    # - NGINX_PORT=80
+
   ## application services
 
   user-gateway-service:
