@@ -42,8 +42,8 @@ services:
       - ./repos/user-gateway-service/mount:/srv/root
       - ./repos/user-gateway-service/scripts:/scripts
 
-  user-accounts-service:
-    image: user-accounts-service:latest
+  users-service:
+    image: users-service:latest
     ports:
       - 11000:80
     environment:
@@ -78,8 +78,8 @@ services:
       - AMQP_USER=guest
       - AMQP_PASS=guest
     volumes:
-      - ./repos/user-accounts-service/mount:/srv/root
-      - ./repos/user-accounts-service/scripts:/scripts
+      - ./repos/users-service/mount:/srv/root
+      - ./repos/users-service/scripts:/scripts
     depends_on:
       - postgres
       - redis
