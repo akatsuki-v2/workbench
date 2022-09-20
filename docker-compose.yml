@@ -37,7 +37,7 @@ services:
       - APP_COMPONENT=api
       - APP_HOST=0.0.0.0
       - APP_PORT=80
-      - LOG_LEVEL=10
+      - LOG_LEVEL=20
     volumes:
       - ./repos/user-gateway-service/mount:/srv/root
       - ./repos/user-gateway-service/scripts:/scripts
@@ -52,7 +52,7 @@ services:
       - APP_COMPONENT=api
       - APP_HOST=0.0.0.0
       - APP_PORT=80
-      - LOG_LEVEL=10
+      - LOG_LEVEL=20
       # database
       - READ_DB_DRIVER=postgresql
       - READ_DB_USER=postgres
@@ -95,7 +95,7 @@ services:
       - APP_COMPONENT=api
       - APP_HOST=0.0.0.0
       - APP_PORT=80
-      - LOG_LEVEL=10
+      - LOG_LEVEL=20
       # database
       - READ_DB_DRIVER=postgresql
       - READ_DB_USER=postgres
@@ -138,7 +138,7 @@ services:
   #     - APP_COMPONENT=api
   #     - APP_HOST=0.0.0.0
   #     - APP_PORT=80
-  #     - LOG_LEVEL=10
+  #     - LOG_LEVEL=20
   #     # database
   #     - READ_DB_DRIVER=postgresql
   #     - READ_DB_USER=postgres
@@ -181,7 +181,7 @@ services:
   #     - APP_COMPONENT=api
   #     - APP_HOST=0.0.0.0
   #     - APP_PORT=80
-  #     - LOG_LEVEL=10
+  #     - LOG_LEVEL=20
   #     # database
   #     - READ_DB_DRIVER=postgresql
   #     - READ_DB_USER=postgres
