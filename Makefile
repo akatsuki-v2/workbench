@@ -9,6 +9,7 @@ build: # build all containers
 	# @docker build -t beatmaps-service:latest $(REPO_DIR)/beatmaps-service
 	# @docker build -t clans-service:latest $(REPO_DIR)/clans-service
 	@docker build -t chat-service:latest $(REPO_DIR)/chat-service
+	@docker build -t frontend-service:latest $(REPO_DIR)/frontend-service
 
 clone: # clone all containers
 	@if [ ! -d $(REPO_DIR)/user-gateway-service ]; then git clone git@github.com:akatsuki-v2/user-gateway-service.git $(REPO_DIR)/user-gateway-service; fi
@@ -17,6 +18,7 @@ clone: # clone all containers
 	# @if [ ! -d $(REPO_DIR)/beatmaps-service ]; then git clone git@github.com:akatsuki-v2/beatmaps-service.git $(REPO_DIR)/beatmaps-service; fi
 	# @if [ ! -d $(REPO_DIR)/clans-service ]; then git clone git@github.com:akatsuki-v2/clans-service.git $(REPO_DIR)/clans-service; fi
 	@if [ ! -d $(REPO_DIR)/chat-service ]; then git clone git@github.com:akatsuki-v2/chat-service.git $(REPO_DIR)/chat-service; fi
+	@if [ ! -d $(REPO_DIR)/frontend-service ]; then git clone git@github.com:akatsuki-v2/frontend-service.git $(REPO_DIR)/frontend-service; fi
 
 pull: # pull all containers
 	cd $(REPO_DIR)/user-gateway-service && git pull
@@ -25,6 +27,7 @@ pull: # pull all containers
 	# cd $(REPO_DIR)/beatmaps-service && git pull
 	# cd $(REPO_DIR)/clans-service && git pull
 	cd $(REPO_DIR)/chat-service && git pull
+	cd $(REPO_DIR)/frontend-service && git pull
 
 run-bg: # run all containers in the background
 	@docker-compose up -d \
@@ -34,7 +37,8 @@ run-bg: # run all containers in the background
 		user-gateway-service \
 		users-service \
 		bancho-service \
-		chat-service
+		chat-service \
+		frontend-service
 		# beatmaps-service \
 		# clans-service \
 
@@ -46,6 +50,7 @@ run: # run all containers in the foreground
 		user-gateway-service \
 		users-service \
 		bancho-service \
-		chat-service
+		chat-service \
+		frontend-service
 		# beatmaps-service \
 		# clans-service \
