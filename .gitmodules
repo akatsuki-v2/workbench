@@ -1,0 +1,21 @@
+[submodule "repos/users-service"]
+	path = repos/users-service
+	url = git@github.com:akatsuki-v2/users-service.git
+[submodule "repos/user-gateway-service"]
+	path = repos/user-gateway-service
+	url = git@github.com:akatsuki-v2/user-gateway-service.git
+[submodule "repos/bancho-service"]
+	path = repos/bancho-service
+	url = git@github.com:akatsuki-v2/bancho-service.git
+[submodule "repos/clans-service"]
+	path = repos/clans-service
+	url = git@github.com:akatsuki-v2/clans-service.git
+[submodule "repos/chat-service"]
+	path = repos/chat-service
+	url = git@github.com:akatsuki-v2/chat-service.git
+[submodule "repos/beatmaps-service"]
+	path = repos/beatmaps-service
+	url = git@github.com:akatsuki-v2/beatmaps-service.git
+[submodule "repos/frontend-service"]
+	path = repos/frontend-service
+	url = git@github.com:akatsuki-v2/frontend-service.git
