@@ -3,14 +3,15 @@ version: "3.3"
 services:
   ## shared/managed services
 
-  postgres:
-    image: postgres:13
+  mysql:
+    image: mysql
     environment:
-      POSTGRES_PASSWORD: lol123
+      - MYSQL_ROOT_PASSWORD=lol123
+    restart: always
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./mysql:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - 3306:3306
 
   redis:
     image: redis
@@ -54,17 +55,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=20
       # database
-      - READ_DB_DRIVER=postgresql
-      - READ_DB_USER=postgres
+      - READ_DB_DRIVER=mysql
+      - READ_DB_USER=root
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=postgres
-      - READ_DB_PORT=5432
+      - READ_DB_HOST=mysql
+      - READ_DB_PORT=3306
       - READ_DB_NAME=users_dev
-      - WRITE_DB_DRIVER=postgresql
-      - WRITE_DB_USER=postgres
+      - WRITE_DB_DRIVER=mysql
+      - WRITE_DB_USER=root
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=postgres
-      - WRITE_DB_PORT=5432
+      - WRITE_DB_HOST=mysql
+      - WRITE_DB_PORT=3306
       - WRITE_DB_NAME=users_dev
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -81,7 +82,7 @@ services:
       - ./repos/users-service/mount:/srv/root
       - ./repos/users-service/scripts:/scripts
     depends_on:
-      - postgres
+      - mysql
       - redis
       # - rabbitmq
 
@@ -97,17 +98,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=20
       # database
-      - READ_DB_DRIVER=postgresql
-      - READ_DB_USER=postgres
+      - READ_DB_DRIVER=mysql
+      - READ_DB_USER=root
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=postgres
-      - READ_DB_PORT=5432
+      - READ_DB_HOST=mysql
+      - READ_DB_PORT=3306
       - READ_DB_NAME=bancho_dev
-      - WRITE_DB_DRIVER=postgresql
-      - WRITE_DB_USER=postgres
+      - WRITE_DB_DRIVER=mysql
+      - WRITE_DB_USER=root
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=postgres
-      - WRITE_DB_PORT=5432
+      - WRITE_DB_HOST=mysql
+      - WRITE_DB_PORT=3306
       - WRITE_DB_NAME=bancho_dev
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -124,96 +125,9 @@ services:
       - ./repos/bancho-service/mount:/srv/root
       - ./repos/bancho-service/scripts:/scripts
     depends_on:
-      - postgres
+      - mysql
       # - redis
       # - rabbitmq
-
-  # beatmaps-service:
-  #   image: beatmaps-service:latest
-  #   ports:
-  #     - 13000:80
-  #   environment:
-  #     # asgi + app
-  #     - APP_ENV=local
-  #     - APP_COMPONENT=api
-  #     - APP_HOST=0.0.0.0
-  #     - APP_PORT=80
-  #     - LOG_LEVEL=20
-  #     # database
-  #     - READ_DB_DRIVER=postgresql
-  #     - READ_DB_USER=postgres
-  #     - READ_DB_PASS=lol123
-  #     - READ_DB_HOST=postgres
-  #     - READ_DB_PORT=5432
-  #     - READ_DB_NAME=beatmaps_dev
-  #     - WRITE_DB_DRIVER=postgresql
-  #     - WRITE_DB_USER=postgres
-  #     - WRITE_DB_PASS=lol123
-  #     - WRITE_DB_HOST=postgres
-  #     - WRITE_DB_PORT=5432
-  #     - WRITE_DB_NAME=beatmaps_dev
-  #     - MIN_DB_POOL_SIZE=5
-  #     - MAX_DB_POOL_SIZE=10
-  #     - DB_USE_SSL=false
-  #     # redis
-  #     - REDIS_HOST=redis
-  #     - REDIS_PORT=6379
-  #     # rabbitmq
-  #     - AMQP_HOST=rabbitmq
-  #     - AMQP_PORT=5672
-  #     - AMQP_USER=guest
-  #     - AMQP_PASS=guest
-  #   volumes:
-  #     - ./repos/beatmaps-service/mount:/srv/root
-  #     - ./repos/beatmaps-service/scripts:/scripts
-  #   depends_on:
-  #     - postgres
-  #     # - redis
-  #     # - rabbitmq
-
-  # clans-service:
-  #   image: clans-service:latest
-  #   ports:
-  #     - 14000:80
-  #   environment:
-  #     # asgi + app
-  #     - APP_ENV=local
-  #     - APP_COMPONENT=api
-  #     - APP_HOST=0.0.0.0
-  #     - APP_PORT=80
-  #     - LOG_LEVEL=20
-  #     # database
-  #     - READ_DB_DRIVER=postgresql
-  #     - READ_DB_USER=postgres
-  #     - READ_DB_PASS=lol123
-  #     - READ_DB_HOST=postgres
-  #     - READ_DB_PORT=5432
-  #     - READ_DB_NAME=clans_dev
-  #     - WRITE_DB_DRIVER=postgresql
-  #     - WRITE_DB_USER=postgres
-  #     - WRITE_DB_PASS=lol123
-  #     - WRITE_DB_HOST=postgres
-  #     - WRITE_DB_PORT=5432
-  #     - WRITE_DB_NAME=clans_dev
-  #     - MIN_DB_POOL_SIZE=5
-  #     - MAX_DB_POOL_SIZE=10
-  #     - DB_USE_SSL=false
-  #     # redis
-  #     - REDIS_HOST=redis
-  #     - REDIS_PORT=6379
-  #     # rabbitmq
-  #     - AMQP_HOST=rabbitmq
-  #     - AMQP_PORT=5672
-  #     - AMQP_USER=guest
-  #     - AMQP_PASS=guest
-  #   volumes:
-  #     - ./repos/clans-service/mount:/srv/root
-  #     - ./repos/clans-service/scripts:/scripts
-  #   depends_on:
-  #     - postgres
-  #     # - redis
-  #     # - rabbitmq
-
 
   chat-service:
     image: chat-service:latest
@@ -227,17 +141,17 @@ services:
       - APP_PORT=80
       - LOG_LEVEL=10
       # database
-      - READ_DB_DRIVER=postgresql
-      - READ_DB_USER=postgres
+      - READ_DB_DRIVER=mysql
+      - READ_DB_USER=root
       - READ_DB_PASS=lol123
-      - READ_DB_HOST=postgres
-      - READ_DB_PORT=5432
+      - READ_DB_HOST=mysql
+      - READ_DB_PORT=3306
       - READ_DB_NAME=chat_dev
-      - WRITE_DB_DRIVER=postgresql
-      - WRITE_DB_USER=postgres
+      - WRITE_DB_DRIVER=mysql
+      - WRITE_DB_USER=root
       - WRITE_DB_PASS=lol123
-      - WRITE_DB_HOST=postgres
-      - WRITE_DB_PORT=5432
+      - WRITE_DB_HOST=mysql
+      - WRITE_DB_PORT=3306
       - WRITE_DB_NAME=chat_dev
       - MIN_DB_POOL_SIZE=5
       - MAX_DB_POOL_SIZE=10
@@ -254,6 +168,92 @@ services:
       - ./repos/chat-service/mount:/srv/root
       - ./repos/chat-service/scripts:/scripts
     depends_on:
-      - postgres
+      - mysql
       - redis
       # - rabbitmq
+
+  # beatmaps-service:
+  #   image: beatmaps-service:latest
+  #   ports:
+  #     - 13000:80
+  #   environment:
+  #     # asgi + app
+  #     - APP_ENV=local
+  #     - APP_COMPONENT=api
+  #     - APP_HOST=0.0.0.0
+  #     - APP_PORT=80
+  #     - LOG_LEVEL=20
+  #     # database
+  #     - READ_DB_DRIVER=mysql
+  #     - READ_DB_USER=root
+  #     - READ_DB_PASS=lol123
+  #     - READ_DB_HOST=mysql
+  #     - READ_DB_PORT=3306
+  #     - READ_DB_NAME=beatmaps_dev
+  #     - WRITE_DB_DRIVER=mysql
+  #     - WRITE_DB_USER=root
+  #     - WRITE_DB_PASS=lol123
+  #     - WRITE_DB_HOST=mysql
+  #     - WRITE_DB_PORT=3306
+  #     - WRITE_DB_NAME=beatmaps_dev
+  #     - MIN_DB_POOL_SIZE=5
+  #     - MAX_DB_POOL_SIZE=10
+  #     - DB_USE_SSL=false
+  #     # redis
+  #     - REDIS_HOST=redis
+  #     - REDIS_PORT=6379
+  #     # rabbitmq
+  #     - AMQP_HOST=rabbitmq
+  #     - AMQP_PORT=5672
+  #     - AMQP_USER=guest
+  #     - AMQP_PASS=guest
+  #   volumes:
+  #     - ./repos/beatmaps-service/mount:/srv/root
+  #     - ./repos/beatmaps-service/scripts:/scripts
+  #   depends_on:
+  #     - mysql
+  #     # - redis
+  #     # - rabbitmq
+
+  # clans-service:
+  #   image: clans-service:latest
+  #   ports:
+  #     - 14000:80
+  #   environment:
+  #     # asgi + app
+  #     - APP_ENV=local
+  #     - APP_COMPONENT=api
+  #     - APP_HOST=0.0.0.0
+  #     - APP_PORT=80
+  #     - LOG_LEVEL=20
+  #     # database
+  #     - READ_DB_DRIVER=mysql
+  #     - READ_DB_USER=root
+  #     - READ_DB_PASS=lol123
+  #     - READ_DB_HOST=mysql
+  #     - READ_DB_PORT=3306
+  #     - READ_DB_NAME=clans_dev
+  #     - WRITE_DB_DRIVER=mysql
+  #     - WRITE_DB_USER=root
+  #     - WRITE_DB_PASS=lol123
+  #     - WRITE_DB_HOST=mysql
+  #     - WRITE_DB_PORT=3306
+  #     - WRITE_DB_NAME=clans_dev
+  #     - MIN_DB_POOL_SIZE=5
+  #     - MAX_DB_POOL_SIZE=10
+  #     - DB_USE_SSL=false
+  #     # redis
+  #     - REDIS_HOST=redis
+  #     - REDIS_PORT=6379
+  #     # rabbitmq
+  #     - AMQP_HOST=rabbitmq
+  #     - AMQP_PORT=5672
+  #     - AMQP_USER=guest
+  #     - AMQP_PASS=guest
+  #   volumes:
+  #     - ./repos/clans-service/mount:/srv/root
+  #     - ./repos/clans-service/scripts:/scripts
+  #   depends_on:
+  #     - mysql
+  #     # - redis
+  #     # - rabbitmq
