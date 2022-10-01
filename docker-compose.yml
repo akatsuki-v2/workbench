@@ -80,6 +80,8 @@ services:
       - AMQP_PORT=5672
       - AMQP_USER=guest
       - AMQP_PASS=guest
+      # misc
+      - AUTH_SESSION_DURATION=3600
     volumes:
       - ./repos/users-service/mount:/srv/root
       - ./repos/users-service/scripts:/scripts
