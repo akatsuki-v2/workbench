@@ -20,7 +20,7 @@ pull: # pull all containers
 run-bg: # run all containers in the background
 	@docker-compose up -d \
 		nginx \
-		postgres \
+		mysql \
 		redis \
 		user-gateway-service \
 		users-service \
@@ -30,7 +30,7 @@ run-bg: # run all containers in the background
 run: # run all containers in the foreground
 	@docker-compose up \
 		nginx \
-		postgres \
+		mysql \
 		redis \
 		user-gateway-service \
 		users-service \
