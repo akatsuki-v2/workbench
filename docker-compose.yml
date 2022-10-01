@@ -1,5 +1,7 @@
 version: "3.3"
 
+# architecture: https://i.cmyui.xyz/vnImBXhZMTHF.png
+
 services:
   ## shared/managed services
 
