@@ -19,3 +19,6 @@
 [submodule "repos/frontend-service"]
 	path = repos/frontend-service
 	url = git@github.com:akatsuki-v2/frontend-service.git
+[submodule "repos/admins-gateway-service"]
+	path = repos/admins-gateway-service
+	url = git@github.com:akatsuki-v2/admins-gateway-service.git
