@@ -25,8 +25,9 @@ services:
     image: nginx:1.19
     volumes:
     - ./nginx-templates:/etc/nginx/templates
+    - ./nginx-certs:/etc/nginx/certs
     ports:
-    - "80:80"
+    - 443:443
 
   ## application services
 
