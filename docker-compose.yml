@@ -42,6 +42,8 @@ services:
       - APP_HOST=0.0.0.0
       - APP_PORT=80
       - LOG_LEVEL=20
+      # authentication + authorization
+      - AUTH_SESSION_DURATION=3600
     volumes:
       - ./repos/user-gateway-service/mount:/srv/root
       - ./repos/user-gateway-service/scripts:/scripts
@@ -81,8 +83,6 @@ services:
       - AMQP_PORT=5672
       - AMQP_USER=guest
       - AMQP_PASS=guest
-      # misc
-      - AUTH_SESSION_DURATION=3600
     volumes:
       - ./repos/users-service/mount:/srv/root
       - ./repos/users-service/scripts:/scripts
