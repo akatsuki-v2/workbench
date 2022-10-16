@@ -126,6 +126,8 @@ services:
       - AMQP_PORT=5672
       - AMQP_USER=guest
       - AMQP_PASS=guest
+      # pagination
+      - DEFAULT_PAGE_SIZE=20
     volumes:
       - ./repos/bancho-service/mount:/srv/root
       - ./repos/bancho-service/scripts:/scripts
