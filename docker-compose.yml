@@ -177,48 +177,59 @@ services:
       - redis
       # - rabbitmq
 
-  # beatmaps-service:
-  #   image: beatmaps-service:latest
-  #   ports:
-  #     - 13000:80
-  #   environment:
-  #     # asgi + app
-  #     - APP_ENV=local
-  #     - APP_COMPONENT=api
-  #     - APP_HOST=0.0.0.0
-  #     - APP_PORT=80
-  #     - LOG_LEVEL=20
-  #     # database
-  #     - READ_DB_DRIVER=mysql
-  #     - READ_DB_USER=root
-  #     - READ_DB_PASS=lol123
-  #     - READ_DB_HOST=mysql
-  #     - READ_DB_PORT=3306
-  #     - READ_DB_NAME=beatmaps_dev
-  #     - WRITE_DB_DRIVER=mysql
-  #     - WRITE_DB_USER=root
-  #     - WRITE_DB_PASS=lol123
-  #     - WRITE_DB_HOST=mysql
-  #     - WRITE_DB_PORT=3306
-  #     - WRITE_DB_NAME=beatmaps_dev
-  #     - MIN_DB_POOL_SIZE=5
-  #     - MAX_DB_POOL_SIZE=10
-  #     - DB_USE_SSL=false
-  #     # redis
-  #     - REDIS_HOST=redis
-  #     - REDIS_PORT=6379
-  #     # rabbitmq
-  #     - AMQP_HOST=rabbitmq
-  #     - AMQP_PORT=5672
-  #     - AMQP_USER=guest
-  #     - AMQP_PASS=guest
-  #   volumes:
-  #     - ./repos/beatmaps-service/mount:/srv/root
-  #     - ./repos/beatmaps-service/scripts:/scripts
-  #   depends_on:
-  #     - mysql
-  #     # - redis
-  #     # - rabbitmq
+  beatmaps-service:
+    image: beatmaps-service:latest
+    ports:
+      - 13000:80
+    environment:
+      # asgi + app
+      - APP_ENV=local
+      - APP_COMPONENT=api
+      - APP_HOST=0.0.0.0
+      - APP_PORT=80
+      - LOG_LEVEL=20
+      # database
+      - READ_DB_DRIVER=mysql
+      - READ_DB_USER=root
+      - READ_DB_PASS=lol123
+      - READ_DB_HOST=mysql
+      - READ_DB_PORT=3306
+      - READ_DB_NAME=beatmaps_dev
+      - WRITE_DB_DRIVER=mysql
+      - WRITE_DB_USER=root
+      - WRITE_DB_PASS=lol123
+      - WRITE_DB_HOST=mysql
+      - WRITE_DB_PORT=3306
+      - WRITE_DB_NAME=beatmaps_dev
+      - MIN_DB_POOL_SIZE=5
+      - MAX_DB_POOL_SIZE=10
+      - DB_USE_SSL=false
+      # redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # rabbitmq
+      - AMQP_HOST=rabbitmq
+      - AMQP_PORT=5672
+      - AMQP_USER=guest
+      - AMQP_PASS=guest
+      # pagination
+      - DEFAULT_PAGE_SIZE=20
+      # osu!api connection
+      - OSU_API_CLIENT_ID=${OSU_API_CLIENT_ID}
+      - OSU_API_CLIENT_SECRET=${OSU_API_CLIENT_SECRET}
+      - OSU_API_REDIRECT_URL=https://osu.ppy.sh
+      - OSU_API_USERNAME=${OSU_API_USERNAME}
+      - OSU_API_SCOPE=*
+      - OSU_API_PASSWORD=${OSU_API_PASSWORD}
+      - OSU_API_REQUEST_INTERVAL=1.0
+      - OSU_API_MAX_REQUESTS_PER_MINUTE=60
+    volumes:
+      - ./repos/beatmaps-service/mount:/srv/root
+      - ./repos/beatmaps-service/scripts:/scripts
+    depends_on:
+      - mysql
+      # - redis
+      # - rabbitmq
 
   # clans-service:
   #   image: clans-service:latest
