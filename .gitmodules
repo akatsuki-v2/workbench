@@ -25,3 +25,6 @@
 [submodule "repos/scores-service"]
 	path = repos/scores-service
 	url = git@github.com:akatsuki-v2/scores-service.git
+[submodule "repos/admins-service"]
+	path = repos/admins-service
+	url = git@github.com:akatsuki-v2/admins-service.git
