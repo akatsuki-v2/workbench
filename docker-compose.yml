@@ -22,6 +22,8 @@ services:
       - 6379:6379
 
   nginx:
+    logging:
+      driver: none
     image: nginx:1.19
     volumes:
     - ./nginx-templates:/etc/nginx/templates
