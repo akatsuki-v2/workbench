@@ -12,6 +12,16 @@ build: # build all containers
 	@docker build -t beatmaps-service:latest $(REPO_DIR)/beatmaps-service
 	@docker build -t scores-service:latest $(REPO_DIR)/scores-service
 
+rebuild: # build all containers without cache
+	@docker build --no-cache -t user-gateway-service:latest $(REPO_DIR)/user-gateway-service
+	@docker build --no-cache -t admins-gateway-service:latest $(REPO_DIR)/admins-gateway-service
+	@docker build --no-cache -t users-service:latest $(REPO_DIR)/users-service
+	@docker build --no-cache -t admins-service:latest $(REPO_DIR)/admins-service
+	@docker build --no-cache -t bancho-service:latest $(REPO_DIR)/bancho-service
+	@docker build --no-cache -t chat-service:latest $(REPO_DIR)/chat-service
+	@docker build --no-cache -t beatmaps-service:latest $(REPO_DIR)/beatmaps-service
+	@docker build --no-cache -t scores-service:latest $(REPO_DIR)/scores-service
+
 clone: # clone all containers
 	@git submodule init
 
