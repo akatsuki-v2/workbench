@@ -28,3 +28,9 @@
 [submodule "repos/admins-service"]
 	path = repos/admins-service
 	url = git@github.com:akatsuki-v2/admins-service.git
+[submodule "repos/shared-modules"]
+	path = repos/shared-modules
+	url = git@github.com:akatsuki-v2/shared-modules.git
+[submodule "repos/cli"]
+	path = repos/cli
+	url = git@github.com:akatsuki-v2/cli.git
