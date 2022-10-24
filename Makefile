@@ -15,15 +15,8 @@ build: # build all containers
 clone: # clone all containers
 	@git submodule init
 
-pull: # pull all containers
-	cd $(REPO_DIR)/user-gateway-service && git pull
-	cd $(REPO_DIR)/admins-gateway-service && git pull
-	cd $(REPO_DIR)/users-service && git pull
-	cd $(REPO_DIR)/admins-service && git pull
-	cd $(REPO_DIR)/bancho-service && git pull
-	cd $(REPO_DIR)/chat-service && git pull
-	cd $(REPO_DIR)/beatmaps-service && git pull
-	cd $(REPO_DIR)/scores-service && git pull
+pull: # pull all submodules
+	@git submodule update --recursive --remote
 
 run-bg: # run all containers in the background
 	@docker-compose up -d \
