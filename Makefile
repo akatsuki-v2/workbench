@@ -54,6 +54,8 @@ run: # run all containers in the foreground
 		nginx \
 		mysql \
 		redis \
+		kafka \
+		zookeeper \
 		user-gateway-service \
 		admins-gateway-service \
 		users-service \
