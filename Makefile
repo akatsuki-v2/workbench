@@ -66,12 +66,11 @@ run: # run all containers in the foreground
 logs: # show logs for all containers
 	docker-compose logs -f
 
-update-venv-modules:
-	cd $(REPO_DIR)/user-gateway-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/admins-gateway-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/users-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/admins-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/bancho-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/chat-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/beatmaps-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
-	cd $(REPO_DIR)/scores-service && venv/bin/pip install -Ur requirements.txt -U pip setuptools
+update-venv:
+	cd $(REPO_DIR)/user-gateway-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/admins-gateway-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/users-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/admins-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/bancho-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/chat-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
+	cd $(REPO_DIR)/scores-service && . venv/bin/activate && pip install -U pip setuptools && pip install -rrequirements{,-dev}.txt
